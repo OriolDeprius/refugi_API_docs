@@ -1,0 +1,40 @@
+site_name: Documentació API El refugi del bon gust
+site_description: Documentació API El refugi del bon gust
+site_author: El refugi del bon gust
+theme:
+  name: material
+  language: ca
+  font:
+    text: Montserrat
+    code: Red Hat Mono
+  logo: logo.svg
+  favicon: logo.svg
+
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+      primary: brown
+      accent: amber
+
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      primary: brown
+      accent: amber
+  features:
+    - search.highlight
+    - search.suggest
+    - search.share
+    - header.autohide
+    - navigation.footer
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MontiliviDaw/projecte-2-grup05
+      name: GitHub
+  generator: false
+  
+copyright: Copyright © 2025 El refugi del bon gust
