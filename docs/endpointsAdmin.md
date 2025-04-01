@@ -5,13 +5,13 @@ Aquí es mostrarà informació dels endpoints creats pels usuaris Administradors
 !!! warning "Atenció"
 
     Totes les sol·licituds a l'API es faran a l'URL del servidor:
-    
+
     http://elrefugidelbongust.daw.institutmontilivi.cat + /API + l'end point desitjat.
 
 !!! info "Tots els tokens enviats han de ser d'administrador perquè la petició retorni dades"
 
 !!! question "Com fem les crides a la API?"
-    
+
     En els nostres exemples mostrarem les crides des de JavaScript amb la biblioteca d'<a href="https://axios-http.com/" target="_blank">axios</a>.
 
 ## **/eliminarComanda (DELETE)**
@@ -41,7 +41,7 @@ Rebras
 ### _Crida_
 
 ??? note "Informació"
-    Realment no esborra el plat, sinó que canvia la propietat `disponible` de `true`  a `false`
+Realment no esborra el plat, sinó que canvia la propietat `disponible` de `true` a `false`
 
 És necessari enviar el token d'identificació per header.
 
@@ -125,26 +125,30 @@ Rebras
 - lactosa
 - idMenu
 
-```js title="Exemple de crida" linenums="1" 
-axios.put("/API/nouPlat", {
-    'nom': "nom",
-    'descripcio': "descripcio",
-    'suplement': 2,
-    'temps': 20,
-    'tipus': "tipus",
-    'idMenu': 4,
-    'gluten': 1,
-    'lactosa': 0
-    },
-    {
-        headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(res => {
-    //tractar resposta
-    })
-    .catch(err => {
-    //tractar errors
-    });
+```js title="Exemple de crida" linenums="1"
+axios
+	.put(
+		"/API/nouPlat",
+		{
+			nom: "nom",
+			descripcio: "descripcio",
+			suplement: 2,
+			temps: 20,
+			tipus: "tipus",
+			idMenu: 4,
+			gluten: 1,
+			lactosa: 0,
+		},
+		{
+			headers: { Authorization: `Bearer ${token}` },
+		}
+	)
+	.then((res) => {
+		//tractar resposta
+	})
+	.catch((err) => {
+		//tractar errors
+	});
 ```
 
 ### _Respostes_
@@ -180,17 +184,18 @@ axios.put("/API/nouPlat", {
 És necessari enviar el token d'identificació per header.
 
 ```js title="Exemple crida" linenums="1"
-axios.get('/API/platsTots', {
-    headers: {
-        'Authorization': `Bearer ${token}`
-    }
-})
-.then(res => {
-    //tractar resposta
-})
-.catch(err => {
-    //tractar errors
-});
+axios
+	.get("/API/platsTots", {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+	.then((res) => {
+		//tractar resposta
+	})
+	.catch((err) => {
+		//tractar errors
+	});
 ```
 
 ### _Respostes_
@@ -199,30 +204,30 @@ axios.get('/API/platsTots', {
 
 ```json title="Exemple de sortida" linenums="1"
 [
-  {
-    "idPlat": 2,
-    "nom": "Crema de Tomàquet",
-    "descripcio": "Crema de tomàquet fresca amb orenga i un toc de crema de llet.",
-    "disponible": 0,
-    "tipus": "entrant",
-    "suplement": 2,
-    "temps": 20,
-    "gluten": 0,
-    "lactosa": 1,
-    "idMenu": 1
-  },
-  {
-    "idPlat": 3,
-    "nom": "Croquetes Casolanes",
-    "descripcio": "Croquetes de pernil ibèric amb una capa cruixent per fora i crems per dins.",
-    "disponible": 0,
-    "tipus": "entrant",
-    "suplement": 3,
-    "temps": 15,
-    "gluten": 1,
-    "lactosa": 1,
-    "idMenu": 1
-  }
+	{
+		"idPlat": 2,
+		"nom": "Crema de Tomàquet",
+		"descripcio": "Crema de tomàquet fresca amb orenga i un toc de crema de llet.",
+		"disponible": 0,
+		"tipus": "entrant",
+		"suplement": 2,
+		"temps": 20,
+		"gluten": 0,
+		"lactosa": 1,
+		"idMenu": 1
+	},
+	{
+		"idPlat": 3,
+		"nom": "Croquetes Casolanes",
+		"descripcio": "Croquetes de pernil ibèric amb una capa cruixent per fora i crems per dins.",
+		"disponible": 0,
+		"tipus": "entrant",
+		"suplement": 3,
+		"temps": 15,
+		"gluten": 1,
+		"lactosa": 1,
+		"idMenu": 1
+	}
 ]
 ```
 
@@ -245,18 +250,20 @@ axios.get('/API/platsTots', {
 És necessari enviar el token d'identificació.
 
 ```js title="Exemple crida" linenums="1" hl_lines="3"
-axios.get('/API/admin', {
-    headers: {
-        'Authorization': `Bearer ${token}`
-    }
-})
-.then(res => {
-    //tractar la resposta
-})
-.catch(err => {
-    //tractar errors
-});
+axios
+	.get("/API/admin", {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+	.then((res) => {
+		//tractar la resposta
+	})
+	.catch((err) => {
+		//tractar errors
+	});
 ```
+
 ### _Respostes_
 
 - Si el token de l'usuari que ha fet la crida **és administrador**, rebrà un `string` i codi `200`

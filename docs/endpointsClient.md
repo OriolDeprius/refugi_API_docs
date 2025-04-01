@@ -5,97 +5,151 @@ Aquí es mostrarà informació dels endpoints creats pels usuaris clients i el r
 !!! warning "Atenció"
 
     Totes les sol·licituds a l'API es faran a l'URL del servidor:
-    
+
     http://elrefugidelbongust.daw.institutmontilivi.cat + /API + l'end point desitjat.
 
+!!! question "Com fem les crides a la API?"
 
+    En els nostres exemples mostrarem les crides des de JavaScript amb la biblioteca d'<a href="https://axios-http.com/" target="_blank">axios</a>.
 
-## /login (POST)
+## **/login (POST)**
 
-### Crida
+### _Crida_
 
 És necessari enviar tant l'api-key com a paràmetre de l'URL, com les dades de login a través del body de la petició.
 
-Retorna un token identificatiu, el nom d'usuari i si es admin o no.
+```js title="Exemple de crida" linenums="1"
 
-### Respostes
+axios.post(`/API/login?apiKey=${apiKey}`, 
+{
+    nomUser: user,
+    pass: password,
+})
+.then(res => {
+    //tractar resposta
+})
+.catch(err =>{
+    //tractar errors
+});
 
-Rebras
+```
 
-## /register (POST)
+### _Respostes_
 
-### Crida
+- Si les dades **son correctes** rebrà un `json` amb codi `200`
+
+```json title="Exemple de resposta" linenums="1"
+
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozNX0.Dc8c1OzG5JnyxO4KNsgGmBtv7sF_vcD6LZ_6nqRYTiQ",
+    "nomUser": "josep",
+    "admin": false
+}
+
+```
+
+- Si la contrasenya **no és correcta** rebrà un `string` amb codi `249`
+
+```json title="Exemple de resposta" linenums="1"
+"La contrasenya no és correcta"
+```
+
+- Si l'usuari **no existeix** rebrà un `string` amb codi `250`
+
+```json title="Exmeple de resposta" linenums="1"
+
+"La consulta no ha tornat dades"
+
+```
+
+- Si la petició **no porta API Key** rebrà un `string` amb codi `404`
+
+```json title="Exemple de resposta" linenums="1"
+
+"No s'ha enviat la api key"
+
+```
+
+- Si l'**API Key no és correcta** rebrà un `string` amb codi `300`
+
+```json title="Exemple de resposta" linenums="1"
+
+"Api key no correcte"
+
+```
+
+## **/register (POST)**
+
+### _Crida_
 
 És necessari enviar les dades del nou usuari a registrar a través del body de la petició.
 
-Retorna un token identificatiu, el nom d'usuari i si es admin o no.
-
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /historial (POST) 
+## **/historial (POST)**
 
-### Crida
+### _Crida_
 
 És necessari enviar el token d'identificació per header.
 
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /demanar (PUT
+## **/demanar (PUT)**
 
-### Crida
+### _Crida_
 
 És necessari enviar el token d'identificació per header.
 
 És necessari enviar el preu del menú demanat i els id's dels plats (primer, segon i postres).
 
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /preuMenu (POST)
+## **/preuMenu (POST)**
 
-### Crida
+### _Crida_
 
 No és necessari enviar el token d'identificació.
 
 És necessari enviar l'id del menú del qual sol·licites informació.
 
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /plats (GET)
+## **/plats (GET)**
 
-### Crida
+### _Crida_
 
 És necessari enviar el token d'identificació per header.
 
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /platsDia (POST)
+## **/platsDia (POST)**
 
-### Crida
+### _Crida_
 
 No és necessari enviar el token d'identificació.
 
 És necessari enviar el dia del qual es volen veure els plats.
 
-### Respostes
+### _Respostes_
 
 Rebras
 
-## /admin (GET)
+## **/admin (GET)**
 
-### Crida
+### _Crida_
 
 És necessari enviar el token d'identificació.
 
-### Respostes
+### _Respostes_
 
 Rebras
