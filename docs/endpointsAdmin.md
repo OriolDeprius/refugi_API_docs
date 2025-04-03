@@ -8,11 +8,11 @@ Aquí es mostrarà informació dels endpoints creats pels usuaris Administradors
 
     http://elrefugidelbongust.daw.institutmontilivi.cat + /API + l'end point desitjat.
 
-!!! info "Tots els tokens enviats han de ser d'administrador perquè la petició retorni dades"
-
-!!! question "Com fem les crides a la API?"
+!!! question "Com fem les crides a l'API?"
 
     En els nostres exemples mostrarem les crides des de JavaScript amb la biblioteca d'<a href="https://axios-http.com/" target="_blank">axios</a>.
+
+!!! info "Tots els tokens enviats han de ser d'administrador perquè la petició retorni dades"
 
 ## **/eliminarComanda (DELETE)**
 
@@ -126,9 +126,7 @@ Rebras
 - idMenu
 
 ```js title="Exemple de crida" linenums="1"
-axios
-	.put(
-		"/API/nouPlat",
+axios.put("/API/nouPlat",
 		{
 			nom: "nom",
 			descripcio: "descripcio",
@@ -184,8 +182,7 @@ axios
 És necessari enviar el token d'identificació per header.
 
 ```js title="Exemple crida" linenums="1"
-axios
-	.get("/API/platsTots", {
+axios.get("/API/platsTots", {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
@@ -250,8 +247,7 @@ axios
 És necessari enviar el token d'identificació.
 
 ```js title="Exemple crida" linenums="1" hl_lines="3"
-axios
-	.get("/API/admin", {
+axios.get("/API/admin", {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
