@@ -41,7 +41,7 @@ Rebras
 ### _Crida_
 
 ??? note "Informació"
-Realment no esborra el plat, sinó que canvia la propietat `disponible` de `true` a `false`
+    Realment no esborra el plat, sinó que canvia la propietat `disponible` de `true` a `false`
 
 És necessari enviar el token d'identificació per header.
 

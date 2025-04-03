@@ -16,16 +16,16 @@ S’ha usat una organització de codi dinàmica amb un framework de front-end. �
 
 ### Llenguatges utilitzats:
 
-- PHP: Per la creació i gestió de l'API.
-- JavaScript: Per tot el dinamisme i lògica al front-end.
-- HTML: Maquetació de la web.
-- CSS: Dissenyar i donar estils.
-- SQL: Per la gestió de les dades de la web i guardar-les a una Base de Dades MySQL.
+- [PHP](https://www.php.net/): Per la creació i gestió de l'API.
+- [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript): Per tot el dinamisme i lògica al front-end.
+- [HTML](https://developer.mozilla.org/es/docs/Web/HTML): Maquetació de la web.
+- [CSS](https://developer.mozilla.org/es/docs/Web/CSS): Dissenyar i donar estils.
+- [SQL](https://www.mysql.com/): Per la gestió de les dades de la web i guardar-les a una Base de Dades MySQL.
 
 ### Frameworks utilitzats:
 
-- Vue.js: Utilitzat per la lògica del front-end.
+- [Vue.js](https://vuejs.org/): Utilitzat per la lògica del front-end.
 
 ### Eines utilitzades:
 
-- PrimeVue: Biblioteca per Vue.js de components per la interfície.
+- [PrimeVue](https://primevue.org/): Biblioteca per Vue.js de components per la interfície.
