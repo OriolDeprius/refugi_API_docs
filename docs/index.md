@@ -1,3 +1,6 @@
+<!-- markdownlint-disable MD033 -->
+# Home
+
 Aquesta API ha estat creada com a **backend** pel projecte 2 del grup 5 de segon de DAW.
 
 ## El refugi del bon gust
@@ -28,6 +31,7 @@ S’ha usat una organització de codi dinàmica amb un framework de front-end. �
 </div>
 
 ### Frameworks utilitzats
+
 <div class="grid cards" markdown>
 
 - :simple-vuedotjs: [Vue.js](https://vuejs.org/) per la lògica del front-end.

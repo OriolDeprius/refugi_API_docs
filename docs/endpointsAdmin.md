@@ -1,3 +1,6 @@
+<!-- markdownlint-disable MD046 -->
+<!-- markdownlint-disable MD010 -->
+
 # Endpoints Admin
 
 Aquí es mostrarà informació dels endpoints creats pels usuaris Administradors i el resultat de la seva petició.
@@ -16,29 +19,29 @@ Aquí es mostrarà informació dels endpoints creats pels usuaris Administradors
 
 ## **/eliminarComanda (DELETE)**
 
-### _Crida_
+### _Crida /eliminarComanda_
 
 És necessari enviar el token d'identificació per header.
 
 És necessari enviar l'id de comanda.
 
-### _Respostes_
+### _Respostes /eliminarComanda_
 
 Rebras
 
 ## **/comandesAdmin (GET)**
 
-### _Crida_
+### _Crida /comandesAdmin_
 
 És necessari enviar el token d'identificació per header.
 
-### _Respostes_
+### _Respostes /comandesAdmin_
 
 Rebras
 
 ## **/deletePlat (PUT)**
 
-### _Crida_
+### _Crida /deletePlat_
 
 ??? note "Informació"
     Realment no esborra el plat, sinó que canvia la propietat `disponible` de `true` a `false`
@@ -47,25 +50,25 @@ Rebras
 
 És necessari enviar l'id del plat a esborrar.
 
-### _Respostes_
+### _Respostes /deletePlat_
 
 Rebras
 
 ## **/habilitarPlat (PUT)**
 
-### _Crida_
+### _Crida /habilitarPlat_
 
 És necessari enviar el token d'identificació per header.
 
 És necessari enviar l'id del plat a activar.
 
-### _Respostes_
+### _Respostes /habilitarPlat_
 
 Rebras
 
 ## **/updatePlat (PUT)**
 
-### _Crida_
+### _Crida /updatePlat_
 
 És necessari enviar el token d'identificació per header.
 
@@ -80,37 +83,37 @@ Rebras
 - gluten
 - lactosa
 
-### _Respostes_
+### _Respostes /updatePlat_
 
 Rebras
 
 ## **/deleteDiaPlat (PUT)**
 
-### _Crida_
+### _Crida /deleteDiaPlat_
 
 És necessari enviar el token d'identificació per header.
 
 És necessari enviar per body l'id del plat sobre el qual es vol actuar.
 
-### _Respostes_
+### _Respostes /deleteDiaPlat_
 
 Rebras
 
 ## **/insertDiaPlat (PUT)**
 
-### _Crida_
+### _Crida /insertDiaPlat_
 
 És necessari enviar el token d'identificació per header.
 
 És necessari enviar per body l'id del plat sobre el qual es vol actuar i els dies que es vol posar el plat.
 
-### _Respostes_
+### _Respostes /insertDiaPlat_
 
 Rebras
 
 ## **/nouPlat (PUT)**
 
-### _Crida_
+### _Crida /nouPlat_
 
 És necessari enviar el token d'identificació per header.
 
@@ -127,20 +130,19 @@ Rebras
 
 ```js title="Exemple de crida" linenums="1"
 axios.put("/API/nouPlat",
-		{
-			nom: "nom",
-			descripcio: "descripcio",
-			suplement: 2,
-			temps: 20,
-			tipus: "tipus",
-			idMenu: 4,
-			gluten: 1,
-			lactosa: 0,
-		},
-		{
-			headers: { Authorization: `Bearer ${token}` },
-		}
-	)
+	{
+		nom: "nom",
+		descripcio: "descripcio",
+		suplement: 2,
+		temps: 20,
+		tipus: "tipus",
+		idMenu: 4,
+		gluten: 1,
+		lactosa: 0,
+	},
+	{
+		headers: { Authorization: `Bearer ${token}` },
+	})
 	.then((res) => {
 		//tractar resposta
 	})
@@ -149,7 +151,7 @@ axios.put("/API/nouPlat",
 	});
 ```
 
-### _Respostes_
+### _Respostes /nouPlat_
 
 - Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
 
@@ -177,7 +179,7 @@ axios.put("/API/nouPlat",
 
 ## **/platsTots (GET)**
 
-### _Crida_
+### _Crida /platsTots_
 
 És necessari enviar el token d'identificació per header.
 
@@ -195,7 +197,7 @@ axios.get("/API/platsTots", {
 	});
 ```
 
-### _Respostes_
+### _Respostes /platsTots_
 
 - Si el token **és d'administrador** rebrà un `object` i codi `200`
 
@@ -242,7 +244,7 @@ axios.get("/API/platsTots", {
 
 ## **/admin (GET)**
 
-### _Crida_
+### _Crida /admin_
 
 És necessari enviar el token d'identificació.
 
@@ -260,7 +262,7 @@ axios.get("/API/admin", {
 	});
 ```
 
-### _Respostes_
+### _Respostes /admin_
 
 - Si el token de l'usuari que ha fet la crida **és administrador**, rebrà un `string` i codi `200`
 

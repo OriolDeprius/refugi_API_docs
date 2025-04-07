@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD046 -->
+
 # Endpoints Client
 
 Aquí es mostrarà informació dels endpoints creats pels usuaris clients i el resultat de la seva petició.
@@ -22,9 +24,9 @@ Fa l'inici de sessió. Envies per `body` el nom d'usuari i contrasenya introduï
 Reps un `token` generat per identificar l'usuari, el nom d'usuari el qual ha iniciat sessió, i si és administrador o no.
 
 !!!warning
-    És important guardar el `token` rebut per fer la resta de consultes a l'API. Ja sigui a les `cookies`, `localstorage`, o de qualsevol altra manera. 
+    És important guardar el `token` rebut per fer la resta de consultes a l'API. Ja sigui a les `cookies`, `localstorage`, o de qualsevol altra manera.
 
-### _Crida_
+### _Crida /login_
 
 És necessari enviar tant l'api-key com a paràmetre de l'URL, com les dades de login a través del body de la petició.
 
@@ -44,7 +46,7 @@ axios.post(`/API/login?apiKey=${apiKey}`,
 
 ```
 
-### _Respostes_
+### _Respostes /login_
 
 - Si les dades **son correctes** rebrà un `json` amb codi `200`
 
@@ -95,7 +97,7 @@ Fa un registre d'un nou usuari. Totes les dades requerides són obligatòries ex
 ???tip
     Recomenem sanejar les dades abans d'enviar-les. Així evitem SQL Injection.
 
-### _Crida_
+### _Crida /register_
 
 És necessari enviar les dades del nou usuari a registrar a través del body de la petició.
 
@@ -124,7 +126,7 @@ axios.post(`/API/register`,
     })
 ```
 
-### _Respostes_
+### _Respostes /register_
 
 - Si les dades són correctes rebràs un `json` amb codi `200`
 
@@ -146,7 +148,7 @@ axios.post(`/API/register`,
 
 Recuperes l'historial de comandes d'un usuari.
 
-### _Crida_
+### _Crida /historial_
 
 És necessari enviar el token d'identificació per header.
 
@@ -164,7 +166,7 @@ axios.get('/API/historial',
     });
 ```
 
-### _Respostes_
+### _Respostes /historial_
 
 - Si el token és vàlid rebràs un `json` amb l'historial de l'usuari amb codi `200`
 
@@ -249,7 +251,7 @@ axios.get('/API/historial',
 
 Fa una crida per guardar una comanda demanada per un client.
 
-### _Crida_
+### _Crida /demanar_
 
 És necessari enviar el token d'identificació per header.
 
@@ -273,7 +275,7 @@ axios.put("/API/demanar",
     })
 ```
 
-### _Respostes_
+### _Respostes /demanar_
 
 - Si tot és correcte rebràs un `string` amb codi `200`
 
@@ -296,12 +298,11 @@ axios.put("/API/demanar",
 "Token invalid Token no enviat"
 ```
 
-
 ## **/preuMenu (POST)**
 
 Reps la suma sense suplements del cost d'un menú.
 
-### _Crida_
+### _Crida /preuMenu_
 
 No és necessari enviar el token d'identificació.
 
@@ -317,7 +318,7 @@ axios.post("/API/preuMenu",
     })
 ```
 
-### _Respostes_
+### _Respostes /preuMenu_
 
 - Si tot és correcte rebràs un `json` amb codi `200`
 
@@ -335,9 +336,9 @@ axios.post("/API/preuMenu",
 
 ## **/plats (GET)**
 
-Llista els plats disponibles pel dia d'avui. 
+Llista els plats disponibles pel dia d'avui.
 
-### _Crida_
+### _Crida /plats_
 
 És necessari enviar el token d'identificació per header.
 
@@ -353,7 +354,7 @@ axios.get("/API/plats", {
     });
 ```
 
-### _Respostes_
+### _Respostes /plats_
 
 - Si la crida és correcta, rebràs un `json` amb codi `200`
 
@@ -408,7 +409,7 @@ axios.get("/API/plats", {
 
 Llista els plats disponibles per un dia en concret de la setmana (1-7).
 
-### _Crida_
+### _Crida /platsDia_
 
 No és necessari enviar el token d'identificació.
 
@@ -424,7 +425,7 @@ axios.post("/API/platsDia",
     });
 ```
 
-### _Respostes_
+### _Respostes /platsDia_
 
 - Resposta d'una consulta ben executada. Rebràs un `json` amb codi `200`
 
@@ -479,7 +480,7 @@ axios.post("/API/platsDia",
 
 Segons el token enviat, sabràs si l'usuari és administrador o no.
 
-### _Crida_
+### _Crida /admin_
 
 És necessari enviar el token d'identificació.
 
@@ -495,7 +496,7 @@ axios.get('/API/admin',
     })
 ```
 
-### _Respostes_
+### _Respostes /admin_
 
 - Resposta amb `token` no administrador. Rebràs un `string` amb codi `200`
 
