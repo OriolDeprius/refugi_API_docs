@@ -25,9 +25,38 @@ Aquí es mostrarà informació dels endpoints creats pels usuaris Administradors
 
 És necessari enviar l'id de comanda.
 
+```js title="Exemple de crida" linenums="1"
+axios.delete('/API/eliminarComanda', {
+	data: {
+		idComanda: "idComandaEliminar"
+	},
+	headers: {
+		'Authorization': `Bearer ${localStorage.token}`
+	}
+}).then(res => {
+	//Tractar resposta
+}).catch(err => {
+	//Tractar errors
+});
+```
+
 ### _Respostes /eliminarComanda_
 
-Rebras
+- Si es fa una sol·licitud correcta rebrà un codi `200`
+
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
+
+```json title="Exemple sortida" linenums="1"
+"No admin"
+```
+
+- Si es fa una sol·licitud **sense dades** o amb **alguna faltant** rebrà un codi `230 plat no trobat`
+
+```json title="Exemple sortida" linenums="1"
+"Falta enviar el idComanda a eliminar!"
+```
 
 ## **/comandesAdmin (GET)**
 
@@ -35,9 +64,53 @@ Rebras
 
 És necessari enviar el token d'identificació per header.
 
+```js title="Exemple de crida" linenums="1"
+axios.get('/API/comandesAdmin', {
+	headers: {
+		'Authorization': `Bearer ${localStorage.token}`,
+	}
+}).then(res => {
+	//Tractar resposta
+});
+```
+
 ### _Respostes /comandesAdmin_
 
-Rebras
+- Si es fa una sol·licitud correcta rebrà un `JSON` amb codi `200`
+
+```json title="Exemple sortida" linenums="1"
+[
+    {
+        "idComanda": 52314,
+        "estat": 0,
+        "data": "2025-04-03 12:43:14",
+        "preu": "20.00",
+        "nom": "Crema de Tomquet",
+        "tipus": "entrant",
+        "sumplement": 2,
+        "temps": 20,
+        "nomUser": "admin"
+    },
+    {
+        "idComanda": 52314,
+        "estat": 0,
+        "data": "2025-04-03 12:43:14",
+        "preu": "20.00",
+        "nom": "Entrecot a la Brasa",
+        "tipus": "principal",
+        "sumplement": 7,
+        "temps": 45,
+        "nomUser": "admin"
+    },
+]
+```
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
+
+```json title="Exemple sortida" linenums="1"
+"Token invalid Signature verification failed"
+```
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un codi `500`
 
 ## **/deletePlat (PUT)**
 
@@ -50,9 +123,44 @@ Rebras
 
 És necessari enviar l'id del plat a esborrar.
 
+```js title="Exemple de crida" linenums="1"
+axios.put("/API/deletePlat",
+	{
+		'idPlat': "idPlat"
+	},
+	{
+		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+	}
+)
+	.then(res => {
+		//Tractar resposta
+	})
+	.catch(err => {
+		//Tractar error
+	});
+
+```
+
 ### _Respostes /deletePlat_
 
-Rebras
+- Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
+
+```json title="Exemple sortida" linenums="1"
+"Plat eliminat"
+```
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
+
+```json title="Exemple sortida" linenums="1"
+"Token invalid Signature verification failed"
+```
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
+
+```json title="Exemple sortida" linenums="1"
+"No admin"
+```
+
+- Si es fa una sol·licitud **sense dades** o amb **alguna faltant** rebrà un codi `404 Plat no trobat`
 
 ## **/habilitarPlat (PUT)**
 
@@ -62,9 +170,44 @@ Rebras
 
 És necessari enviar l'id del plat a activar.
 
+```js title="Exemple de crida" linenums="1"
+axios.put("/API/habilitarPlat",
+	{
+		'idPlat': "idPlat"
+	},
+	{
+		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+	}
+)
+	.then(res => {
+		//Tractar resposta
+	})
+	.catch(err => {
+		//Tracta error
+	});
+
+```
+
 ### _Respostes /habilitarPlat_
 
-Rebras
+- Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
+
+```json title="Exemple sortida" linenums="1"
+"Plat habilitat"
+```
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
+
+```json title="Exemple sortida" linenums="1"
+"Token invalid Signature verification failed""
+```
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
+
+```json title="Exemple sortida" linenums="1"
+"No admin"
+```
+
+- Si es fa una sol·licitud **sense dades** o amb **alguna faltant** rebrà un codi `404 Plat no trobat`
 
 ## **/updatePlat (PUT)**
 
@@ -83,9 +226,55 @@ Rebras
 - gluten
 - lactosa
 
+```js title="Exemple de crida" linenums="1"
+axios.put("/API/updatePlat",
+	{
+		'nom': "nom",
+		'descripcio': "descripcio",
+		'suplement': "suplement",
+		'temps': "temps",
+		'tipus': "tipus",
+		'gluten': "gluten",
+		'lactosa': "lactosa",
+		'idPlat': "idPlat"
+	},
+	{
+		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+	})
+	.then(res => {
+		if (res.status === 200) {
+			axios.put("/API/deleteDiaPlat",
+				{
+					idPlat: "idPlat"
+				},
+				{
+					headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+				}
+			).then(res => {
+				if (res.status === 200) {
+					axios.put("/API/insertDiaPlat",
+						{
+							idPlat: "idPlat",
+							dies: "idMenus"
+						}
+					).then(res => {
+						//Tractar resposta
+					}).catch(err => {
+						//Tractar error
+					})
+				}
+			}).catch(err => {
+				//Tractar error
+			})
+		}
+	})
+	.catch(err => {
+		//Tractar error
+	});
+```
 ### _Respostes /updatePlat_
 
-Rebras
+
 
 ## **/deleteDiaPlat (PUT)**
 
@@ -93,11 +282,22 @@ Rebras
 
 És necessari enviar el token d'identificació per header.
 
-És necessari enviar per body l'id del plat sobre el qual es vol actuar.
+És necessari enviar per body l'id del plat sobre el qual es vol actuar i els id's dels dies que ja no es vol servir el plat en qüestio.
 
-### _Respostes /deleteDiaPlat_
-
-Rebras
+```js title="Exemple de crida" linenums="1"
+ axios.put("/API/deleteDiaPlat",
+		{
+			idPlat: "idPlatModificarDies"
+		},
+		{
+			headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+		}
+	).then(res => {
+		//Tractar resposta
+	}).catch(err => {
+		//Tractar error
+	})
+```
 
 ## **/insertDiaPlat (PUT)**
 
@@ -105,11 +305,45 @@ Rebras
 
 És necessari enviar el token d'identificació per header.
 
-És necessari enviar per body l'id del plat sobre el qual es vol actuar i els dies que es vol posar el plat.
+És necessari enviar per body l'id del plat sobre el qual es vol actuar i els dies que es vol posar el plat (array de id's).
+
+```js title="Exemple de crida" linenums="1"
+axios.put("/API/insertDiaPlat",
+		{
+			idPlat: "idPlat",
+			dies: ["arrayPlats"]
+		},
+		{
+			headers: { Authorization: `Bearer ${token}` },
+		}
+	).then(res => {
+		//tractar resposta
+	}).catch(err => {
+		//tractar resposta
+	})
+```
 
 ### _Respostes /insertDiaPlat_
 
-Rebras
+
+- Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
+
+```json title="Exemple sortida" linenums="1"
+"Plat afegit al dia"
+```
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
+
+```json title="Exemple sortida" linenums="1"
+"No admin"
+```
+
+- Si es fa una sol·licitud **sense dades** o amb **alguna faltant** rebrà un `string` amb codi `404`
+
+```json title="Exemple sortida" linenums="1"s
+"Falten dades"
+```
 
 ## **/nouPlat (PUT)**
 
