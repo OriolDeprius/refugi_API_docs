@@ -31,7 +31,7 @@ axios.delete('/API/eliminarComanda', {
 		idComanda: "idComandaEliminar"
 	},
 	headers: {
-		'Authorization': `Bearer ${localStorage.token}`
+		'Authorization': `Bearer ${token}`
 	}
 }).then(res => {
 	//Tractar resposta
@@ -67,7 +67,7 @@ axios.delete('/API/eliminarComanda', {
 ```js title="Exemple de crida" linenums="1"
 axios.get('/API/comandesAdmin', {
 	headers: {
-		'Authorization': `Bearer ${localStorage.token}`,
+		'Authorization': `Bearer ${token}`,
 	}
 }).then(res => {
 	//Tractar resposta
@@ -104,6 +104,7 @@ axios.get('/API/comandesAdmin', {
     },
 ]
 ```
+
 - Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
 
 ```json title="Exemple sortida" linenums="1"
@@ -129,7 +130,7 @@ axios.put("/API/deletePlat",
 		'idPlat': "idPlat"
 	},
 	{
-		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+		headers: { 'Authorization': `Bearer ${token}` }
 	}
 )
 	.then(res => {
@@ -148,6 +149,7 @@ axios.put("/API/deletePlat",
 ```json title="Exemple sortida" linenums="1"
 "Plat eliminat"
 ```
+
 - Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
 
 ```json title="Exemple sortida" linenums="1"
@@ -176,7 +178,7 @@ axios.put("/API/habilitarPlat",
 		'idPlat': "idPlat"
 	},
 	{
-		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+		headers: { 'Authorization': `Bearer ${token}` }
 	}
 )
 	.then(res => {
@@ -195,6 +197,7 @@ axios.put("/API/habilitarPlat",
 ```json title="Exemple sortida" linenums="1"
 "Plat habilitat"
 ```
+
 - Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
 
 ```json title="Exemple sortida" linenums="1"
@@ -239,42 +242,16 @@ axios.put("/API/updatePlat",
 		'idPlat': "idPlat"
 	},
 	{
-		headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+		headers: { 'Authorization': `Bearer ${token}` }
 	})
 	.then(res => {
-		if (res.status === 200) {
-			axios.put("/API/deleteDiaPlat",
-				{
-					idPlat: "idPlat"
-				},
-				{
-					headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-				}
-			).then(res => {
-				if (res.status === 200) {
-					axios.put("/API/insertDiaPlat",
-						{
-							idPlat: "idPlat",
-							dies: "idMenus"
-						}
-					).then(res => {
-						//Tractar resposta
-					}).catch(err => {
-						//Tractar error
-					})
-				}
-			}).catch(err => {
-				//Tractar error
-			})
-		}
-	})
-	.catch(err => {
+		//Tractar resposta
+	}).catch(err => {
 		//Tractar error
-	});
+		})
 ```
+
 ### _Respostes /updatePlat_
-
-
 
 ## **/deleteDiaPlat (PUT)**
 
@@ -290,7 +267,7 @@ axios.put("/API/updatePlat",
 			idPlat: "idPlatModificarDies"
 		},
 		{
-			headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+			headers: { 'Authorization': `Bearer ${token}` }
 		}
 	).then(res => {
 		//Tractar resposta
@@ -325,12 +302,12 @@ axios.put("/API/insertDiaPlat",
 
 ### _Respostes /insertDiaPlat_
 
-
 - Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
 
 ```json title="Exemple sortida" linenums="1"
 "Plat afegit al dia"
 ```
+
 - Si es fa una sol·licitud amb un **token invàlid** rebrà un codi `500`
 
 - Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
@@ -341,7 +318,7 @@ axios.put("/API/insertDiaPlat",
 
 - Si es fa una sol·licitud **sense dades** o amb **alguna faltant** rebrà un `string` amb codi `404`
 
-```json title="Exemple sortida" linenums="1"s
+```json title="Exemple sortida" linenums="1"
 "Falten dades"
 ```
 
