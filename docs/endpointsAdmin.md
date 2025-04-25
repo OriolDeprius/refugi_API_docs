@@ -253,6 +253,39 @@ axios.put("/API/updatePlat",
 
 ### _Respostes /updatePlat_
 
+- Si es fa una sol·licitud correcta rebrà un `JSON` amb codi `200` i la informacio del plat modificat
+
+```json title="Exemple sortida" linenums="1"
+{
+	"idPlat": 31,
+	"nom": "nomCanviat",
+	"descripcio": "descripcioCanviada",
+	"tipus": "tipusCanviat",
+	"suplement": 25,
+	"temps": "11",
+	"gluten": 0,
+	"lactosa": 1
+}
+```
+
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un string amb codi `404 NO ADMIN`
+
+```json title="Exemple sortida" linenums="1"
+"Token invalid. Token no enviat. No admin"
+```
+
+- Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `404 NO ADMIN`
+
+```json title="Exemple sortida" linenums="1"
+"No admin"
+```
+
+- Si es fa una sol·licitud **sense dades** o amb **alguna faltant rebrà un string amb un codi `404 PLAT NO TROBAT`
+
+```json title="Exemple sortida" linenums="1"
+"Plat no trobat"
+```
+
 ## **/deleteDiaPlat (PUT)**
 
 ### _Crida /deleteDiaPlat_
@@ -274,6 +307,28 @@ axios.put("/API/updatePlat",
 	}).catch(err => {
 		//Tractar error
 	})
+```
+
+### _Respostes /updatePlat_
+
+- Si es fa una sol·licitud correcta rebrà un `string` amb codi `200`
+
+```json title="Exemple sortida" linenums="1"
+"Plat eliminat del dia"
+```
+
+- Si es fa una sol·licitud amb un **token invàlid** rebrà un string amb codi `500 INTERNAL SERVER ERROR`
+
+- Si es fa una sol·licitud **sense idPlat**  rebra un `string` amb codi `403 FORBIDDEN`
+
+```json title="Exemple sortida" linenums="1"
+"Falten dades"
+```
+
+- Si es fa una sol·licitud **amb idPlat inexistent** rebra un `string` amb codi `404 NO OK`
+
+```json title="Exemple sortida" linenums="1"
+"Plat no eliminat del dia"
 ```
 
 ## **/insertDiaPlat (PUT)**
@@ -373,7 +428,7 @@ axios.put("/API/nouPlat",
 - Si es fa una sol·licitud amb un **token invàlid** rebrà un `string` amb codi `401`
 
 ```json title="Exemple sortida" linenums="1"
-"Token invalid Signature verification failed"
+"Token invalid. Token no enviat. No admin"
 ```
 
 - Si es fa una sol·licitud amb un token que **no és d'administrador** rebrà un `string` amb codi `401`
@@ -450,7 +505,7 @@ axios.get("/API/platsTots", {
 - Si el token **no és vàlid** rebrà un `string` amb codi `403`
 
 ```json title="Exemple de sortida" linenums="1"
-"Token invalid Signature verification failed"
+"Token invalid. Token no enviat"
 ```
 
 ## **/admin (GET)**

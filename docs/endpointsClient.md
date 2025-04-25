@@ -473,7 +473,7 @@ axios.post("/API/platsDia",
 - Resposta amb un `dia` no vàlid. Rebràs un `string`amb codi `404`
 
 ```json title="Exemple resposta" linenums="1"
-"Consulta no ok"
+"Falten dades"
 ```
 
 ## **/admin (GET)**
